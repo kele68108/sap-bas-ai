@@ -11,9 +11,9 @@ if [ -z "$CF_TOKEN" ]; then
 fi
 
 WORK_DIR="/home/user/projects/ai_core"
-# 换用 1.6GB 的 Gemma 2 2B 模型，完美适配 3.9GB 硬盘
-MODEL_NAME="gemma-2-2b-it-Q4_K_M.gguf"
-MODEL_URL="https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/resolve/main/gemma-2-2b-it-Q4_K_M.gguf"
+# 换用 1.1GB 的 Qwen2-1.5B 模型，完美适配 3.9GB 硬盘
+MODEL_NAME="qwen2-1_5b-instruct-q4_k_m.gguf"
+MODEL_URL="https://huggingface.co/Qwen/Qwen2-1.5B-Instruct-GGUF/resolve/main/qwen2-1_5b-instruct-q4_k_m.gguf"
 
 mkdir -p $WORK_DIR
 cd $WORK_DIR
