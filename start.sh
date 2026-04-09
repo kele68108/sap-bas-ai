@@ -31,8 +31,12 @@ XT_INTERNAL_PORT="8002"
 WORK_DIR="/tmp/sap_core"
 
 echo "[+] 启动清理程序，清除旧的僵尸进程..."
-# 暴力释放所有相关端口
+# 1. 暴力释放所有相关监听端口
 fuser -k -9 $HTTP_PORT/tcp $VLESS_PORT/tcp 3001/tcp 3002/tcp $XT_INTERNAL_PORT/tcp >/dev/null 2>&1 || true
+
+# 2. 猎杀不监听端口的僵尸进程 (防止 VPS 内存溢出)
+pkill -f "tunnel.*run" >/dev/null 2>&1 || true
+pkill -f "x-tunnel" >/dev/null 2>&1 || true
 
 # --- 1. 环境准备与文件混淆 ---
 mkdir -p "$WORK_DIR"
